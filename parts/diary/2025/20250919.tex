@@ -1,0 +1,35 @@
+% !TEX root = ../diary-book.tex
+
+\section{令和7年09月19日 誤差の見積もりに挑戦}
+
+令和6年10月19日の日記に従って三平面の交点を用いる場合の誤差評価を行う。ベクトルでの微分が使えると楽なので、まずはその準備をする。
+
+行列を使えば交点の式は簡単に解ける。というか形を変えて簡単にかける。
+
+\begin{align*}
+    \begin{pmatrix}
+        \bm{n}_1^T \\
+        \bm{n}_2^T \\
+        \bm{n}_3^T
+    \end{pmatrix}
+    \bm{x}
+    &=
+    \begin{pmatrix}
+        d_1 \\
+        d_2 \\
+        d_3
+    \end{pmatrix} \\
+    A\bm{x} &= \bm{d} \\
+    \bm{x} &= A^{-1}\bm{d}
+\end{align*}
+
+これを下に一次の線形応答を求めると以下のようになる。
+
+\begin{align*}
+    \Delta \bm{x} &= \frac{\partial \bm{x}}{\partial A} \Delta A + \frac{\partial \bm{x}}{\partial \bm{d}} \Delta \bm{d} \\
+    &= -A^{-1}(\Delta A)A^{-1}\bm{d} + A^{-1}\Delta \bm{d}
+\end{align*}
+
+この式の導出の仕方はそれほど単純ではなく、クロネッカー積を使うと楽にできるらしい。
+
+統計による誤算の伝搬は二次の項であり、共分散行列とヤコビアンによって表現される

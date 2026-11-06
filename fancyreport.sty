@@ -1,0 +1,75 @@
+
+
+\usepackage{tcolorbox}
+\usepackage[]{physics}
+\usepackage[obeyFinal]{easy-todo}
+
+\tcbuselibrary{raster,skins,breakable,theorems}
+
+%begin{qbox}{\target の使用に必要なプログラム}
+%  \begin{enumerate}
+%     \item ROOT (6.26/06)
+%     \item yaml-cpp (0.6.3)
+%     \item aretmis (develop)
+%     \item Geant4 (11.1.2)
+%  \end{enumerate}
+%  \end{qbox}
+   
+
+\newenvironment{qbox}[1]{ % qbox環境を定義して使いやすく
+\begin{tcolorbox}[
+       colframe = RoyalBlue,
+       colback = RoyalBlue!10!White,
+       title = {#1},
+       fonttitle = \bfseries,
+       breakable = true
+    ]
+}{
+    \end{tcolorbox}
+}
+
+\newenvironment{codebox}[1]{ % qbox環境を定義して使いやすく
+   \begin{tcolorbox}[
+      colback = white,
+      left = 20pt ,
+       title = {#1},
+       fonttitle = \bfseries,
+       breakable = true
+    ]
+}{
+    \end{tcolorbox}
+}
+
+
+
+\renewenvironment{itemize}{
+   \begin{list}{\textbullet}{\topsep=1pt}
+   \setlength{\parskip}{0cm} % 段落間
+   \setlength{\itemsep}{0cm} % 項目間
+ 
+}{
+   \end{list}
+}
+\renewenvironment{enumerate}{
+   \begin{list}{\arabic{enumi}.}{\usecounter{enumi}}
+   \setlength{\parskip}{0cm} % 段落間
+   \setlength{\itemsep}{0cm} % 項目間
+ 
+}{
+   \end{list}
+}
+
+
+\usepackage[%
+ dvipdfmx,% 欧文ではコメントアウトする
+ setpagesize=false,%
+ bookmarks=true,%
+ bookmarksdepth=tocdepth,%
+ bookmarksnumbered=true,%
+ colorlinks=true,%
+ linkcolor=MidnightBlue,%
+ pdftitle={},%
+ pdfsubject={},%
+ pdfauthor={},%
+ pdfkeywords={}%
+]{hyperref}

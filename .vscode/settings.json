@@ -1,0 +1,30 @@
+{
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "platex*2+dvipdfmx",
+            "tools": [
+                "platex",
+                "platex",
+                "dvipdfmx"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "platex",
+            "command": "platex",
+            "args": [
+                "-interaction=nonstopmode",
+                "-shell-escape",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "dvipdfmx",
+            "command": "dvipdfmx",
+            "args": [
+                "%DOC%"
+            ]
+        }
+    ]
+}

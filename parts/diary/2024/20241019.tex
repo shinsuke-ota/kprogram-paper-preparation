@@ -1,0 +1,61 @@
+% !TEX root = ../diary-book.tex
+
+\section{令和6年10月19日}
+
+\subsection{３平面の交点の公式}
+
+シャワー面が近似的に平面であると仮定して三平面を用いて交点を導出するために、公式を探したところ
+
+\href{https://maicommon.ciao.jp/ss/geom/plane/index.htm}{こちら}のページに天下り的に式が書き下してあった。
+
+\begin{qbox}{三平面の交点の公式}
+平面の方程式を、法線ベクトル $\overrightarrow{n_i}$ とスカラー量 $d_i$を用いて、以下のように表す。
+
+\begin{equation}
+\overrightarrow{r}\cdot \overrightarrow{n_i} = d_i
+\end{equation}
+
+三平面の交点 $\overrightarrow{r_0}$ は以下のように得られる。
+
+\begin{equation}
+    \overrightarrow{r_0} = \frac{d_1 (\overrightarrow{n_2}\times\overrightarrow{n_3}) + d_2 (\overrightarrow{n_3}\times\overrightarrow{n_1}) + d_3 (\overrightarrow{n_1}\times\overrightarrow{n_2})}{\overrightarrow{n_1}\cdot(\overrightarrow{n_2}\times\overrightarrow{n_3})}
+\end{equation}
+
+\end{qbox}
+
+なんとなく正しい事はわかるし以下の連立方程式から得られるであろうことも推測できたが、分母がこんなにきれいになるのがいまいちわからなかった。
+が、書き下してみるとたしかにそうなるようである。
+\begin{eqnarray}
+    \overrightarrow{r} \cdot \overrightarrow{n_1} ( \overrightarrow{n_2} \times \overrightarrow{n_3} ) = d_1 ( \overrightarrow{n_2} \times \overrightarrow{n_3} )  \\
+    \overrightarrow{r} \cdot \overrightarrow{n_2} ( \overrightarrow{n_3} \times \overrightarrow{n_1} ) = d_1 ( \overrightarrow{n_3} \times \overrightarrow{n_1} )  \\
+    \overrightarrow{r} \cdot \overrightarrow{n_3} ( \overrightarrow{n_1} \times \overrightarrow{n_2} ) = d_1 ( \overrightarrow{n_1} \times \overrightarrow{n_2} ) 
+\end{eqnarray}
+
+問題は $\overrightarrow{r} \cdot \overrightarrow{n_1} ( \overrightarrow{n_2} \times \overrightarrow{n_3} ) $ の部分がきれいになるものなのか、というところ。それぞれ左辺の第一成分を抜き出してみる。
+\begin{eqnarray}
+    (x_0 x_1 + y_0 y_1 + z_0 z_1) (y_2 z_3 - z_2 y_3) = x_0 x_1 y_2 z_3 - x_0 x_1 z_2 y_3 + y_0 y_1 y_2 z_3 - y_0 y_1 z_2 y_3 + z_0 z_1 y_2 z_3 - z_0 z_1 z_2 y_3 \\
+    (x_0 x_2 + y_0 y_2 + z_0 z_2) (y_3 z_1 - z_3 y_1) = x_0 x_2 y_3 z_1 - x_0 x_2 z_3 y_1 + y_0 y_2 y_3 z_1 - y_0 y_2 z_3 y_1 + z_0 z_2 y_3 z_1 - z_0 z_2 z_3 y_1 \\
+    (x_0 x_3 + y_0 y_3 + z_0 z_3) (y_1 z_2 - z_1 y_2) = x_0 x_3 y_1 z_2 - x_0 x_3 z_1 y_2 + y_0 y_3 y_1 z_2 - y_0 y_3 z_1 y_2 + z_0 z_3 y_1 z_2 - z_0 z_3 z_1 y_2 
+\end{eqnarray}
+
+これらの足し算をするわけだが、第３項以降ではy,z成分が三回以上出てきており、これらがちょうど打ち消し合うことがわかる。したがって、以下の公式が成り立つ。
+
+\begin{qbox}{内積と三重積の関係}
+    三次元のベクトル $\overrightarrow{r}$, $\overrightarrow{n_i}$ に対して、以下が成り立つ。
+    \begin{equation}
+        \sum_{ijk} \varepsilon_{ijk} \overrightarrow{r}\cdot \overrightarrow{n_i} (\overrightarrow{n_j}\times\overrightarrow{n_k}) = \overrightarrow{r} \overrightarrow{n_i} \cdot (\overrightarrow{n_j}\times\overrightarrow{n_k})
+    \end{equation}
+    ただし、$\varepsilon_{ijk}$ はエディントンのイプシロンである。
+\end{qbox}
+
+\subsection{平面近似による測位・時刻同期手法}
+
+あるシャワーに対して平面 $(\bm{r} - \bm{r_0})\cdot \bm{\hat{n}} = 0$ が得られたとする。ただし、$\bm{r_0}$は面内の任意の位置であり、$\bm{\hat{n}}$は平面の単位法線ベクトルである。
+それよりも $\Delta t$ だけ遅れた時刻において測位点 $\bm{x}$ でミュオンが測定される。
+ミュオンは平面の法線ベクトルに沿って進むとしたとき測位点が満たす方程式は、ミュオンの速さを $c$、測位点の計測システムが持つ時刻オフセットを$\delta t$として
+\begin{eqnarray}
+    \{\bm{x} - \bm{r_0} -c(\Delta t + \delta t)\bm{\hat{n}}\} \cdot \bm{\hat{n}} = 0  \\
+    \bm{x}\cdot\bm{\hat{n}} = \bm{r_0}\cdot\bm{\hat{n}} + c\Delta t + c\delta t \equiv d  
+\end{eqnarray}
+となる。測位点および時刻オフセットを求めるためには、４つの平面の情報が必要である。
+４つの平面のうち３つの平面を用いて交点をもとめ、別の１つの平面を含む３つの平面を用いて交点をもとめる。これらの交点は一致するという条件を課すことで全ての情報を解くことができる。

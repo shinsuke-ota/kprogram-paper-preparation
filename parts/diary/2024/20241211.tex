@@ -1,0 +1,18 @@
+% !TEX root = ../diary-book.tex
+
+\section{令和6年12月11日}
+
+位置導出のシミュレーションを実装する。
+シャワー面を平面近似した場合にどのような誤差となりうるのかを見積もることを目指す。
+
+同時にどのエネルギーのガンマ線がどの程度発生するのかをシミュレーションによって得ることで平面近似する際の分布に用いることにする。
+
+{\bf 2024-12-11 06:50:41}
+
+ata03 に CosmosX をインストールする。fortran 環境がないと言われるので gcc-gfortran を dnf でインストールする。
+
+\begin{codebox}{gfortran のインストール}
+   \begin{minted}{shell}
+      [root@ata03 CosmosX_0.08] dnf install gcc-gfortran
+   \end{minted}
+\end{codebox}
