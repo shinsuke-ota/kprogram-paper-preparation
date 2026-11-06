@@ -1,11 +1,15 @@
-\documentclass[dvipdfmx]{jreport}
+\documentclass[uplatex]{jreport}
 % Use the lineno option to display guide line numbers if required.
 
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{zxjatype}
+\fi
+\usepackage[utf8]{inputenc}
+\usepackage{CJK}
 %\usepackage[]{graphicx}
 \usepackage[]{listings}
 \setcounter{secnumdepth}{4}
-
-\usepackage[margin=20truemm]{geometry}
 \usepackage{minted}
 \usepackage[dvipsnames]{xcolor}   
 \usepackage{fontawesome}
@@ -13,6 +17,8 @@
 \usepackage{chartdef}
 \usepackage{comment}
 \usepackage{subfiles}
+
+% \usepackage[margin=20truemm]{geometry}
 \usepackage{bm}
 %\usepackage{easy-todo}
 \usemintedstyle{solarized-light}
